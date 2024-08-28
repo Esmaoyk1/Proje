@@ -1,18 +1,21 @@
+from datetime import date
 from fastapi import FastAPI, HTTPException, Depends ,status
-from typing import Annotated,List
+from typing import Annotated,List, Optional
 from sqlalchemy.orm import Session
-from pydantic import BaseModel
+from pydantic import BaseModel , Field
 #from .database import SessionLocal, engine
 #from database import SessionLocal, engine 
 #import models
 
+from datetime import date
 from FastAPI.database import SessionLocal, engine 
 from FastAPI import models 
 from fastapi.middleware.cors import CORSMiddleware
 
 
 
-app = FastAPI()
+
+app = FastAPI(title="Transactions API",openapi_url="/openapi.json")
 
 origins = [
     "http://localhost:3000"
@@ -24,12 +27,12 @@ app.add_middleware(
 )
 
 class TransactionBase(BaseModel):
-    amount: float
-    category: str
-    description: str
+    amount: float = Field(gt=0)
+    category: str = Field(max_length=50,default="işlem")
+    description: Optional[str] = Field(default="Açıklama")
     is_income: bool
     date: str
-
+        
 class TransactionModel(TransactionBase):
     id: int
     
@@ -50,7 +53,7 @@ models.Base.metadata.create_all(bind=engine)
 
 @app.post("/transactions/", response_model=TransactionModel)
 async def create_transaction(transaction: TransactionBase, db: db_dependecy):
-    db_transaction = models.Transaction(**transaction.dict())
+    db_transaction = models.Transaction(**transaction.model_dump())
     db.add(db_transaction)
     db.commit()
     db.refresh(db_transaction)
@@ -72,7 +75,7 @@ async def get_byId(transactions_id : int , db:Session = Depends(get_db)):
     if result is None:
         raise HTTPException(
             status_code= 404,
-            detail= f"ID {transactions_id} : Does not exist"
+            detail= f"ID {transactions_id} : Mevcut değil"
         )
         
     return result
@@ -86,7 +89,7 @@ async def update_transactions(transactions_id:int , transaction:TransactionBase 
     if result is None:
         raise HTTPException(
             status_code= 404,
-            detail=f"ID {transactions_id} : Does not exist"
+            detail=f"ID {transactions_id} : Mevcut değil"
         )
     
     result.amount = transaction.amount
@@ -94,6 +97,7 @@ async def update_transactions(transactions_id:int , transaction:TransactionBase 
     result.description = transaction.description
     result.is_income = transaction.is_income
     result.date = transaction.date
+    
     
     db.commit()
     db.refresh(result)
@@ -108,7 +112,7 @@ async def delete_transactions(transactions_id : int , db:Session = Depends(get_d
     if result is None:
         raise HTTPException(
             status_code= 404,
-            detail= f"ID {transactions_id} : Does not exist"
+            detail= f"ID {transactions_id} : Mevcut değil"
         )
     
     

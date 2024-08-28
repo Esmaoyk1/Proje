@@ -1,6 +1,9 @@
-from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlite3 import Date
+from sqlalchemy import Column, String, Integer, Float, Boolean 
 #from database import Base
 from FastAPI.database import Base
+
+
 
 class Transaction(Base):
     __tablename__ = "transactions"
