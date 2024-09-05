@@ -7,7 +7,6 @@ from pydantic import BaseModel , Field
 #from database import SessionLocal, engine 
 #import models
 
-from datetime import date
 from FastAPI.database import SessionLocal, engine 
 from FastAPI import models 
 from fastapi.middleware.cors import CORSMiddleware
