@@ -1,4 +1,3 @@
-from datetime import date
 from fastapi import FastAPI, HTTPException, Depends ,status
 from typing import Annotated,List, Optional
 from sqlalchemy.orm import Session
