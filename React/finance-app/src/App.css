@@ -36,3 +36,101 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css */
+
+body {
+  background-color: #fae8e0; /* Genel arka plan rengi */
+  color: black; /* Yazı rengi */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern yazı tipi */
+}
+
+.app-container {
+  margin: 30px;
+}
+
+.navbar {
+  background-color: #ef7c8e;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Hafif gölge efekti */
+  
+}
+
+.navbar-brand {
+  color: #ffffff; /* Navigasyon başlığı rengi */
+}
+
+.transaction-form {
+  background-color: #68b89d; /* Form arka plan rengi */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Hafif gölge efekti */
+}
+
+.table {
+  background-color: #fae8e0; /* Tablo arka plan rengi */
+  border: 5px solid #d8a7b1; /* Tablo kenarlığı */
+  border-radius: 10px; /* Kenarları yuvarlatır */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Hafif gölge efekti */
+
+}
+
+.table-hover tbody tr:hover {
+  background-color: #b6e2d3; /* Satır hover rengi */
+  color: black;
+  cursor: pointer; /* Satır üzerine geldiğinde imlecini pointer yapar */
+}
+
+.table th, .table td {
+  padding: 12px; /* Hücre içi boşluk */
+  text-align: left; /* Metin hizalaması */
+}
+
+
+.table th {
+  background-color: #d8a7b1; /* Başlık arka plan rengi */
+  color: white; /* Başlık metin rengi */
+  font-weight: bold; /* Başlık metni kalın */
+}
+
+.btn-custom {
+  background-color: #ef7c8e; /* Buton arka plan rengi */
+  border: none; /* Kenarlık kaldırılır */
+  color: #fff; /* Buton metin rengi */
+  padding: 10px 20px; /* İç padding */
+  border-radius: 10px; /* Kenarları yuvarlatır */
+  font-size: 16px; /* Yazı boyutu */
+  cursor: pointer; /* Fare imlecini pointer yapar */
+  transition: background-color 0.5s ease; /* Arka plan renginin geçiş efekti */
+}
+
+.btn-custom:hover {
+  background-color: #d06373; /* Hover rengini değiştirir */
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif; /* Başlıklar için modern font */
+  font-weight: 600; /* Başlıklar için kalın yazı tipi */
+}
+
+
+
+
+footer {
+  background-color: #68b89d; /* Footer arka plan rengi */
+  color: #ffffff; /* Yazı rengi */
+  text-align: center; /* Yazıyı ortalar */
+  padding: 20px; /* İç boşluk */
+  font-size: 16px; /* Yazı boyutu */
+  border-top: 3px solid #d06373; /* Üst kenarlık rengi */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Hafif gölge efekti */
+  font-family: 'Arial', sans-serif; /* Yazı fontu */
+  letter-spacing: 1px; /* Harfler arasına boşluk ekler */
+  text-transform: uppercase; /* Yazıyı büyük harflerle yazar */
+  border-radius: 10px 10px 0 0; /* Köşeleri yuvarlatır */
+  line-height: 1.6; /* Satır yüksekliği */
+}
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "./api";
+import "./App.css";
 
 const App = () => {
   const [transactions, setTransactions] = useState([]);
@@ -8,13 +9,13 @@ const App = () => {
     category: "",
     description: "",
     is_income: false,
-    date: ""
+    date: "",
   });
 
   const fetchTransactions = async () => {
     const response = await api.get("/transactions/");
     setTransactions(response.data);
-  }
+  };
 
   useEffect(() => {
     fetchTransactions();
@@ -40,28 +41,128 @@ const App = () => {
       category: "",
       description: "",
       is_income: false,
-      date: ""
+      date: "",
     });
   };
 
-
-
   return (
     <div>
-      <nav className="navbar navbar-dark bg-primary">
+      <nav className="navbar navbar-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             Finance App
           </a>
-
         </div>
-
       </nav>
+
+      <div className="container">
+        <form onSubmit={handleFormSubmit} className="transaction-form">
+          <div className="mb-3 mt-3">
+            <label htmlFor="amount" className="form-label">
+              Amount
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="amount"
+              name="amount"
+              onChange={handleInputChange}
+              value={formData.amount}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="category" className="form-label">
+              Category
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="category"
+              name="category"
+              onChange={handleInputChange}
+              value={formData.category}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">
+              Description
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="description"
+              name="description"
+              onChange={handleInputChange}
+              value={formData.description}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="is_income" className="form-label">
+              Income ?
+            </label>
+            <input style={{transform: "scale(2)"}}
+              type="checkbox"
+              id="is_income"
+              name="is_income"
+              onChange={handleInputChange}
+              value={formData.is_income}
+
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="date" className="form-label">
+              Date
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="date"
+              name="date"
+              onChange={handleInputChange}
+              value={formData.date}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-custom">
+            Submit
+          </button>
+        </form>
+        <br/>
+
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Income ?</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.amount}</td>
+                <td>{transaction.category}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.is_income ? "Yes" : "No"}</td>
+                <td>{transaction.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+            <br></br>
+        <footer>
+          Esmanur OYANIK 1030210011 Zorunlu Staj-2
+        </footer>
+      </div>
     </div>
-  )
-
-
+  );
 };
 
 export default App;
-
